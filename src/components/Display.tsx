@@ -22,9 +22,7 @@ export default function Display({
     <div className="container">
       <div>
         {awayTeamInfo.map((team: awayTeam) => (
-          <div key={team.team_id}>
-            <AwayTeamInfo awayTeamInfo={team} />
-          </div>
+          <AwayTeamInfo awayTeamInfo={team} />
         ))}
       </div>
       <div>
@@ -37,9 +35,7 @@ export default function Display({
       </div>
       <div>
         {homeTeamInfo.map((team: homeTeam) => (
-          <div key={team.team_id}>
-            <HomeTeamInfo homeTeamInfo={team} />
-          </div>
+          <HomeTeamInfo homeTeamInfo={team} />
         ))}
       </div>
     </div>
