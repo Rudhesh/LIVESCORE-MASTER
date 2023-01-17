@@ -15,74 +15,39 @@ export default function Score({
   homeTeamInfo,
   homeScore,
 }: Props) {
-  const away: (TeamInfo | undefined)[] = awayTeamInfo.map(
-    (away: { team_id: number }) => {
-      return awayScore.find((score: { team_id: number }) => {
-        if (away.team_id === score.team_id) {
-          return <div key={away.team_id}>{1}</div>;
-        }
-      });
-    }
-  );
+  const awayScoreData = awayTeamInfo.map((away: TeamInfo) => {
+    const score = awayScore.find((s) => s.team_id === away.team_id);
+    return score ? 1 : 0;
+  });
 
-  const home: (TeamInfo | undefined)[] = homeTeamInfo.map(
-    (home: { team_id: number }) => {
-      return homeScore.find((score: { team_id: number }) => {
-        if (home.team_id === score.team_id) {
-          return <div key={home.team_id}>{1}</div>;
-        }
-      });
-    }
-  );
+  const homeScoreData = homeTeamInfo.map((home: TeamInfo) => {
+    const score = homeScore.find((s) => s.team_id === home.team_id);
+    return score ? 1 : 0;
+  });
 
   return (
     <div>
       <div className="scoreboard">
         <div className="score">
-          {" "}
-          {away.map((s: TeamInfo | undefined) => {
-            if (s) {
-              return (
-                <div className="teams" key={Math.random()}>
-                  {1}
-                </div>
-              );
-            } else {
-              return (
-                <div className="teams" key={Math.random()}>
-                  {0}
-                </div>
-              );
-            }
-          })}
+          {awayScoreData.map((score, index) => (
+            <div className="teams" key={index}>
+              {score}
+            </div>
+          ))}
         </div>
         <div className="score">
-          {" "}
-          {away.map((s: TeamInfo | undefined) => {
-            return (
-              <div className="teams" key={Math.random()}>
-                {":"}
-              </div>
-            );
-          })}
+          {awayScoreData.map(() => (
+            <div className="teams" key={Math.random()}>
+              :
+            </div>
+          ))}
         </div>
         <div className="score">
-          {" "}
-          {home.map((s: TeamInfo | undefined) => {
-            if (s) {
-              return (
-                <div className="teams" key={Math.random()}>
-                  {1}
-                </div>
-              );
-            } else {
-              return (
-                <div className="teams" key={Math.random()}>
-                  {0}
-                </div>
-              );
-            }
-          })}
+          {homeScoreData.map((score, index) => (
+            <div className="teams" key={index}>
+              {score}
+            </div>
+          ))}
         </div>
       </div>
     </div>
