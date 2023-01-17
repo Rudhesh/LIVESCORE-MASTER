@@ -1,16 +1,17 @@
 import React from "react";
+import { TeamInfo } from "./interfaces";
 
 type Props = {
-  awayTeamInfo: any;
+  awayTeam: TeamInfo;
 };
 
-export default function AwayTeamInfo({ awayTeamInfo }: Props) {
+export default function AwayTeamInfo({ awayTeam }: Props) {
   return (
-    <div key={awayTeamInfo.team_id} className="container">
-      <div>{awayTeamInfo.team_name_short}</div>{" "}
+    <div key={awayTeam.team_id} className="container">
+      <div>{awayTeam.team_name_short}</div>{" "}
       <div>
         <img
-          src={`/images/logo_${awayTeamInfo.team_id}.png`}
+          src={`/images/logo_${awayTeam.team_id}.png`}
           alt="Image from folder"
         />
       </div>{" "}

@@ -14,36 +14,37 @@ export default function Teams({
   sportEvents,
 }: Props) {
   //filter team information according to match's away team id
-  const awayTeamInfo: TeamInfo[] = teamsInfo.filter((team) => {
-    return filteredMatches.some((match: any) => {
+  const awayTeamInfo: TeamInfo[] = teamsInfo.filter((team: TeamInfo) => {
+    return filteredMatches.some((match: Match) => {
       return team.team_id === match.away_team_id;
     });
   });
   //filter team information according to match's home team id
-  const homeTeamInfo: TeamInfo[] = teamsInfo.filter((team) => {
-    return filteredMatches.some((match: any) => {
+  const homeTeamInfo: TeamInfo[] = teamsInfo.filter((team: TeamInfo) => {
+    return filteredMatches.some((match: Match) => {
       return team.team_id === match.home_team_id;
     });
   });
 
-  let score = filteredMatches.filter((team) => {
+  let score: Match[] = filteredMatches.filter((team: Match) => {
     return sportEvents.some(
-      (match: any) =>
+      (match: SportEvent) =>
         match.score_team === "home" && team.match_id === match.match_id
     );
   });
 
-  const homeScore: TeamInfo[] = teamsInfo.filter((team) => {
-    return score.some((match: any) => {
+  const homeScore: TeamInfo[] = teamsInfo.filter((team: TeamInfo) => {
+    return score.some((match: Match) => {
       return team.team_id === match.home_team_id;
     });
   });
 
-  const awayScore: TeamInfo[] = teamsInfo.filter((team) => {
-    return score.some((match) => {
+  const awayScore: TeamInfo[] = teamsInfo.filter((team: TeamInfo) => {
+    return score.some((match: Match) => {
       return team.team_id === match.away_team_id;
     });
   });
+
   return (
     <div>
       <Display

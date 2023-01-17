@@ -10,8 +10,8 @@ type Props = {
 
 export default function Events({ sportEvents, teamsInfo, match }: Props) {
   // filter matches that match the event match_id
-  const filteredMatches = match.filter((matchItem: any) => {
-    return sportEvents.some((eventItem: any) => {
+  const filteredMatches: Match[] = match.filter((matchItem: Match) => {
+    return sportEvents.some((eventItem: SportEvent) => {
       return matchItem.match_id === eventItem.match_id;
     });
   });

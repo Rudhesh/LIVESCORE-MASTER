@@ -1,11 +1,12 @@
 import React from "react";
+import { TeamInfo } from "./interfaces";
 import "./main.css";
 
 type Props = {
-  awayTeamInfo: any;
-  awayScore: any;
-  homeTeamInfo: any;
-  homeScore: any;
+  awayTeamInfo: TeamInfo[];
+  awayScore: TeamInfo[];
+  homeTeamInfo: TeamInfo[];
+  homeScore: TeamInfo[];
 };
 
 export default function Score({
@@ -14,37 +15,41 @@ export default function Score({
   homeTeamInfo,
   homeScore,
 }: Props) {
-  const away = awayTeamInfo.map((away: { team_id: number }) => {
-    return awayScore.find((score: { team_id: number }) => {
-      if (away.team_id === score.team_id) {
-        return <div key={away.team_id}>{1}</div>;
-      }
-    });
-  });
+  const away: (TeamInfo | undefined)[] = awayTeamInfo.map(
+    (away: { team_id: number }) => {
+      return awayScore.find((score: { team_id: number }) => {
+        if (away.team_id === score.team_id) {
+          return <div key={away.team_id}>{1}</div>;
+        }
+      });
+    }
+  );
 
-  const home = homeTeamInfo.map((home: { team_id: number }) => {
-    return homeScore.find((score: { team_id: number }) => {
-      if (home.team_id === score.team_id) {
-        return <div key={home.team_id}>{1}</div>;
-      }
-    });
-  });
+  const home: (TeamInfo | undefined)[] = homeTeamInfo.map(
+    (home: { team_id: number }) => {
+      return homeScore.find((score: { team_id: number }) => {
+        if (home.team_id === score.team_id) {
+          return <div key={home.team_id}>{1}</div>;
+        }
+      });
+    }
+  );
 
   return (
     <div>
-      <div key={""} className="scoreboard">
+      <div className="scoreboard">
         <div className="score">
           {" "}
-          {away.map((awa: number) => {
-            if (awa) {
+          {away.map((s: TeamInfo | undefined) => {
+            if (s) {
               return (
-                <div className="teams" key={away.team_id}>
+                <div className="teams" key={Math.random()}>
                   {1}
                 </div>
               );
             } else {
               return (
-                <div className="teams" key={away.team_id}>
+                <div className="teams" key={Math.random()}>
                   {0}
                 </div>
               );
@@ -53,9 +58,9 @@ export default function Score({
         </div>
         <div className="score">
           {" "}
-          {away.map((awa: number) => {
+          {away.map((s: TeamInfo | undefined) => {
             return (
-              <div className="teams" key={away.team_id}>
+              <div className="teams" key={Math.random()}>
                 {":"}
               </div>
             );
@@ -63,16 +68,16 @@ export default function Score({
         </div>
         <div className="score">
           {" "}
-          {home.map((awa: number) => {
-            if (awa) {
+          {home.map((s: TeamInfo | undefined) => {
+            if (s) {
               return (
-                <div className="teams" key={away.team_id}>
+                <div className="teams" key={Math.random()}>
                   {1}
                 </div>
               );
             } else {
               return (
-                <div className="teams" key={away.team_id}>
+                <div className="teams" key={Math.random()}>
                   {0}
                 </div>
               );

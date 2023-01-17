@@ -24,7 +24,7 @@ export default function App(): JSX.Element {
     }
     fetchData();
     // setInterval to call the function every 2 seconds
-    let intervalId = setInterval(fetchData, 100000);
+    let intervalId = setInterval(fetchData, 2000);
     // clear the interval when component unmounts
     return () => clearInterval(intervalId);
   }, []);

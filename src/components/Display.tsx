@@ -2,8 +2,8 @@ import React from "react";
 import AwayTeamInfo from "./AwayTeamInfo";
 import "./main.css";
 import HomeTeamInfo from "./HomeTeamInfo";
+import { TeamInfo } from "../components/interfaces";
 import Score from "./Score";
-import { awayTeam, homeTeam, TeamInfo } from "../components/interfaces";
 
 type Props = {
   awayTeamInfo: TeamInfo[];
@@ -21,8 +21,10 @@ export default function Display({
   return (
     <div className="container">
       <div>
-        {awayTeamInfo.map((team: awayTeam) => (
-          <AwayTeamInfo awayTeamInfo={team} />
+        {awayTeamInfo.map((team: TeamInfo) => (
+          <div key={team.team_id}>
+            <AwayTeamInfo awayTeam={team} />
+          </div>
         ))}
       </div>
       <div>
@@ -34,8 +36,10 @@ export default function Display({
         />
       </div>
       <div>
-        {homeTeamInfo.map((team: homeTeam) => (
-          <HomeTeamInfo homeTeamInfo={team} />
+        {homeTeamInfo.map((team: TeamInfo) => (
+          <div key={team.team_id}>
+            <HomeTeamInfo homeTeam={team} />
+          </div>
         ))}
       </div>
     </div>
