@@ -15,9 +15,8 @@ export default function Events({ sportEvents, teamsInfo, match }: Props) {
       return matchItem.match_id === eventItem.match_id;
     });
   });
-
   return (
-    <div className="">
+    <div className="content">
       <div>
         <Teams
           filteredMatches={filteredMatches}
@@ -25,6 +24,7 @@ export default function Events({ sportEvents, teamsInfo, match }: Props) {
           sportEvents={sportEvents}
         />
       </div>
+      <div></div>
     </div>
   );
 }

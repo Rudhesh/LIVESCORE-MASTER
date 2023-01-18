@@ -18,3 +18,11 @@ export interface Match {
   home_team_id: number;
   away_team_id: number;
 }
+
+export interface filteredMatches {
+  match_id: number;
+  tournament_id: number;
+  round: number;
+  home_team_id: number;
+  away_team_id: number;
+}

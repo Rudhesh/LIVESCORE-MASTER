@@ -1,9 +1,14 @@
 import React from "react";
 import Display from "./Display";
-import { SportEvent, TeamInfo, Match } from "../components/interfaces";
+import {
+  SportEvent,
+  TeamInfo,
+  Match,
+  filteredMatches,
+} from "../components/interfaces";
 
 type Props = {
-  filteredMatches: Match[];
+  filteredMatches: filteredMatches[];
   teamsInfo: TeamInfo[];
   sportEvents: SportEvent[];
 };
@@ -15,18 +20,18 @@ export default function Teams({
 }: Props) {
   //filter team information according to match's away team id
   const awayTeamInfo: TeamInfo[] = teamsInfo.filter((team: TeamInfo) => {
-    return filteredMatches.some((match: Match) => {
+    return filteredMatches.some((match: filteredMatches) => {
       return team.team_id === match.away_team_id;
     });
   });
   //filter team information according to match's home team id
   const homeTeamInfo: TeamInfo[] = teamsInfo.filter((team: TeamInfo) => {
-    return filteredMatches.some((match: Match) => {
+    return filteredMatches.some((match: filteredMatches) => {
       return team.team_id === match.home_team_id;
     });
   });
 
-  let score: Match[] = filteredMatches.filter((team: Match) => {
+  let score: Match[] = filteredMatches.filter((team: filteredMatches) => {
     return sportEvents.some(
       (match: SportEvent) =>
         match.score_team === "home" && team.match_id === match.match_id
@@ -52,6 +57,7 @@ export default function Teams({
         homeScore={homeScore}
         awayTeamInfo={awayTeamInfo}
         homeTeamInfo={homeTeamInfo}
+        sportEvents={sportEvents}
       />
     </div>
   );

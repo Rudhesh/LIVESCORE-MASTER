@@ -2,7 +2,7 @@ import React from "react";
 import AwayTeamInfo from "./AwayTeamInfo";
 import "./main.css";
 import HomeTeamInfo from "./HomeTeamInfo";
-import { TeamInfo } from "../components/interfaces";
+import { SportEvent, TeamInfo } from "../components/interfaces";
 import Score from "./Score";
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
   homeTeamInfo: TeamInfo[];
   homeScore: TeamInfo[];
   awayScore: TeamInfo[];
+  sportEvents: SportEvent[];
 };
 
 export default function Display({
@@ -17,6 +18,7 @@ export default function Display({
   homeTeamInfo,
   homeScore,
   awayScore,
+  sportEvents,
 }: Props) {
   return (
     <div className="container">
@@ -33,6 +35,7 @@ export default function Display({
           awayScore={awayScore}
           homeTeamInfo={homeTeamInfo}
           homeScore={homeScore}
+          sportEvents={sportEvents}
         />
       </div>
       <div>
